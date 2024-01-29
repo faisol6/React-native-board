@@ -25,7 +25,16 @@ const Home = ({ navigation }: any) => {
     isFocused && setModalVisible(false);
   }, [isFocused]);
 
-  const RandomList = (array: any[]) => {
+  const RandomList = (
+    array: {
+      qId?: number;
+      question?: string;
+      answer?: { id: number; text: string; check: boolean }[];
+      id?: number;
+      text?: string;
+      check?: boolean;
+    }[]
+  ) => {
     let currentIndex = array.length,
       randomIndex;
 
@@ -56,9 +65,9 @@ const Home = ({ navigation }: any) => {
         {RandomList(ListItem)?.map(
           (
             item: {
-              qId: number;
-              question: string;
-              answer: { id: number; text: string; check: boolean }[];
+              qId?: number;
+              question?: string;
+              answer?: { id: number; text: string; check: boolean }[];
             },
             idx: number
           ) => (
@@ -70,9 +79,9 @@ const Home = ({ navigation }: any) => {
               </View>
               <View style={styles.answer}>
                 <CheckboxGroup
-                  items={RandomList(item.answer)}
+                  items={RandomList(item?.answer || [])}
                   control={control}
-                  name={item.qId?.toString()}
+                  name={item?.qId?.toString() || ""}
                 />
               </View>
             </View>
@@ -155,7 +164,14 @@ export const CheckboxGroup = ({
 }: {
   name: string;
   control: Control<FieldValues, any>;
-  items: { id: number; text: string; check: boolean }[];
+  items: {
+    qId?: number;
+    question?: string;
+    answer?: { id: number; text: string; check: boolean }[];
+    id?: number;
+    text?: string;
+    check?: boolean;
+  }[];
 }) => {
   const isFocused = useIsFocused();
   const [checkboxState, setCheckboxState] = useState(0);
@@ -175,10 +191,10 @@ export const CheckboxGroup = ({
       style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
     >
       <RadioButton
-        value={i?.id?.toString()}
+        value={i?.id?.toString() || ""}
         status={checkboxState === i?.id ? "checked" : "unchecked"}
         onPress={() => {
-          setCheckboxState(i?.id);
+          setCheckboxState(i?.id || 0);
           field.onChange(i?.check);
         }}
         color={"white"}
