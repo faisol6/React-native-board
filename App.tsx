@@ -1,9 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Button } from "react-native";
-import HomeScreen from "./Home";
-import Board from "./Board";
-import storage from "./Storeage";
+import HomeScreen from "./src/views/Home";
+import Board from "./src/views/Board";
 
 const Stack = createNativeStackNavigator();
 

@@ -9,7 +9,7 @@ import {
   Modal,
   TextInput,
 } from "react-native";
-import { ListItem } from "./ListItem";
+import { ListItem } from "../services/ListItem";
 import { RadioButton } from "react-native-paper";
 import { useForm, useController, Control, FieldValues } from "react-hook-form";
 import { useIsFocused } from "@react-navigation/native";
@@ -22,7 +22,9 @@ const Home = ({ navigation }: any) => {
   const [score, setScore] = useState(0);
 
   React.useEffect(() => {
-    isFocused && setModalVisible(false);
+    if (isFocused) {
+    }
+    setModalVisible(false);
   }, [isFocused]);
 
   const RandomList = (

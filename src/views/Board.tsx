@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View, Button } from "react-native";
-import storage from "./Storeage";
+import storage from "../services/Storeage";
 import { DataTable } from "react-native-paper";
 
 const Board = ({ navigation, route }: any) => {
